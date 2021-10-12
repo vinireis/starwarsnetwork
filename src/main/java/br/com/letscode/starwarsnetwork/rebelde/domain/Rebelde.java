@@ -2,6 +2,9 @@ package br.com.letscode.starwarsnetwork.rebelde.domain;
 
 import java.util.UUID;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,7 +17,9 @@ import lombok.ToString;
 @ToString
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
+@Document(collection = "Rebelde")
 public class Rebelde {
+	@Id
 	private UUID id;
 	private String nome;
 	private Integer idade;

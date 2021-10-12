@@ -1,1 +1,10 @@
+server:
+ servlet:
+    context-path: /starwarsnetwork/app
 
+spring:
+  data:
+    mongodb:
+      authentication-database: admin
+      uri: ${MONGO_DB_URI:mongodb+srv://letscode:1ueeUg9rKkgyboWI@cluster0.bbnoj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority}
+      auto-index-creation: true
