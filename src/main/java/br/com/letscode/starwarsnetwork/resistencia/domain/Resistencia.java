@@ -1,5 +1,6 @@
 package br.com.letscode.starwarsnetwork.resistencia.domain;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Optional;
@@ -52,4 +53,10 @@ public class Resistencia {
 		return Optional.ofNullable(blackListRebeldes.get(idTraidor))
 				.orElse(new HashSet<UUID>());
 	}
+
+	public Map<UUID, Set<UUID>> getBlackListRebeldes() {
+		return Collections.unmodifiableMap(blackListRebeldes);
+	}
+	
+	
 }
