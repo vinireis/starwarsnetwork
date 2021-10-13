@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.com.letscode.starwarsnetwork.handler.ApiException;
 import br.com.letscode.starwarsnetwork.rebelde.domain.Localizacao;
@@ -64,7 +65,6 @@ public class RebeldeMongoDBService implements RebeldeService {
 			trocaItens(solicitacaoNegociacao, negocianteSolicitante, negocianteSolicitado);
 			rebeldeRepository.salva(negocianteSolicitante);
 			rebeldeRepository.salva(negocianteSolicitado);
-			
 		} else {
 			String message = "Os itens oferecidos não possuem a mesma quantidade de pontos!";
 			log.error(message);
@@ -72,7 +72,8 @@ public class RebeldeMongoDBService implements RebeldeService {
 		}
 		log.info("[finish] RebeldeMongoDBService - negociaItens");
 	}
-
+	
+	@Transactional
 	public void trocaItens(SolicitacaoNegociacao negociacao, Rebelde solicitante, Rebelde solicitado) {
 		if (negociantesNaoForemTraidores(solicitante, solicitado)) {
 			solicitante.trocaItens(negociacao.getItensSolicitante(), negociacao.getItensSolicitado());

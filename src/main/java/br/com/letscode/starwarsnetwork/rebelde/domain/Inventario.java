@@ -54,12 +54,10 @@ public class Inventario {
 	public void adicionaItens(Map<TipoItem, Integer> itensAdicionar) {
 		itensAdicionar.entrySet().stream()
 		.forEach(i -> adiciona(i));
-		
 	}
 
 	private void adiciona(Entry<TipoItem, Integer> itemAdicionar) {
 		Integer estoqueAtual = Optional.ofNullable(estoque.get(itemAdicionar.getKey())).orElse(0);
 		this.estoque.put(itemAdicionar.getKey(), estoqueAtual + itemAdicionar.getValue());
-		
 	}
 }

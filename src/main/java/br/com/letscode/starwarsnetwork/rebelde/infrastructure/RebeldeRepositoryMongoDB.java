@@ -26,9 +26,9 @@ public class RebeldeRepositoryMongoDB implements RebeldeRepository {
 
 	@Override
 	public Optional<Rebelde> buscaPorId(UUID idRebelde) {
-		log.info("[start] RebeldeRepositoryMongoDB - save");
+		log.info("[start] RebeldeRepositoryMongoDB - buscaPorId");
 		var rebelde = rebeldeSpringDataMongoDBRepository.findById(idRebelde);
-		log.info("[finish] RebeldeRepositoryMongoDB - save");
+		log.info("[finish] RebeldeRepositoryMongoDB - buscaPorId");
 		return rebelde;
 	}
 }

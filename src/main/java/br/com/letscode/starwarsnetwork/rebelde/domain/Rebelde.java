@@ -14,6 +14,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import lombok.extern.log4j.Log4j2;
 
 @Builder
 @Getter
@@ -21,6 +22,7 @@ import lombok.ToString;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Document(collection = "Rebelde")
+@Log4j2
 public class Rebelde {
 	@Id
 	private UUID id;
@@ -40,10 +42,13 @@ public class Rebelde {
 	}
 
 	public void trocaItens(Map<TipoItem, Integer> itensRemover, Map<TipoItem, Integer> itensAdicionar) {
+		log.info("[start] Rebelde {} trocaItens. Inventário {}", this.nome, this.inventario.toString());
+		log.debug("itensRemover = {}", itensRemover);
+		log.debug("itensAdicionar = {}", itensAdicionar);
 		inventario.removeItens(itensRemover);
 		inventario.adicionaItens(itensAdicionar);
+		log.info("[finish] Rebelde {} trocaItens. Inventário {}", this.nome, this.inventario.toString());
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
