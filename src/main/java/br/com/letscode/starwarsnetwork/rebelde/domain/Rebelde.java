@@ -2,6 +2,8 @@ package br.com.letscode.starwarsnetwork.rebelde.domain;
 
 import java.util.UUID;
 
+import javax.validation.Valid;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -26,6 +28,10 @@ public class Rebelde {
 	private String genero;
 	private Localizacao localizacao;
 	private Inventario inventario;
+	
+	public void atualizaLocalizacao(@Valid Localizacao localizacao) {
+		this.localizacao = localizacao;
+	}
 
 	@Override
 	public boolean equals(Object obj) {

@@ -1,5 +1,8 @@
 package br.com.letscode.starwarsnetwork.rebelde.infrastructure;
 
+import java.util.Optional;
+import java.util.UUID;
+
 import org.springframework.stereotype.Repository;
 
 import br.com.letscode.starwarsnetwork.rebelde.application.service.RebeldeRepository;
@@ -14,10 +17,18 @@ public class RebeldeRepositoryMongoDB implements RebeldeRepository {
 	private RebeldeSpringDataMongoDBRepository rebeldeSpringDataMongoDBRepository;
 
 	@Override
-	public Rebelde save(Rebelde rebelde) {
-		log.info("[start] RebeldeRepositoryMongoDB - save");
+	public Rebelde salva(Rebelde rebelde) {
+		log.info("[start] RebeldeRepositoryMongoDB - salva");
 		rebelde = rebeldeSpringDataMongoDBRepository.save(rebelde);
+		log.info("[finish] RebeldeRepositoryMongoDB - salva");
+		return rebelde;
+	}
+
+	@Override
+	public Optional<Rebelde> buscaPorId(UUID idRebelde) {
 		log.info("[start] RebeldeRepositoryMongoDB - save");
+		var rebelde = rebeldeSpringDataMongoDBRepository.findById(idRebelde);
+		log.info("[finish] RebeldeRepositoryMongoDB - save");
 		return rebelde;
 	}
 }

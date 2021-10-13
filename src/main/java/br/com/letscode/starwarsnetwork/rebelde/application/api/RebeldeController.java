@@ -32,6 +32,7 @@ public class RebeldeController implements RebeldeAPI {
 	public void atualizaLocalizacaoRebelde(UUID idRebelde, @Valid Localizacao localizacao) {
 		log.info("[start] RebeldeController - atualizaLocalizacaoRebelde");
 		log.debug("localizacao = {}", localizacao);
+		rebeldeService.atualizaLocalizacaoRebelde(idRebelde, localizacao);
 		log.info("[finish] RebeldeController - atualizaLocalizacaoRebelde");
 	}
 }
