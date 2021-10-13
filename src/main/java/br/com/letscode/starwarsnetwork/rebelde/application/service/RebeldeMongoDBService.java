@@ -40,4 +40,13 @@ public class RebeldeMongoDBService implements RebeldeService {
 		log.info("[finish] RebeldeMongoDBService - buscaRebeldePorId");
 		return rebeldePorId;
 	}
+
+	@Override
+	public void marcaComoTraidor(UUID idTraidor) {
+		log.info("[start] RebeldeMongoDBService - marcaComoTraidor");
+		Rebelde rebeldeTraidor = buscaRebeldePorId(idTraidor);
+		rebeldeTraidor.marcaComoTraidor();
+		rebeldeRepository.salva(rebeldeTraidor);
+		log.info("[finish] RebeldeMongoDBService - marcaComoTraidor");
+	}
 }

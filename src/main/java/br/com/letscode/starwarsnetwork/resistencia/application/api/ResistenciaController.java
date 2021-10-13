@@ -16,9 +16,9 @@ public class ResistenciaController implements ResistenciaAPI {
 	private ResistenciaService resistenciaService;
 
 	@Override
-	public void reportaTraicaoRebelde(UUID idRebelde) {
+	public void reportaTraicaoRebelde(UUID idReportador, UUID idTraidor) {
 		log.info("[start] ResistenciaController - reportaTraicaoRebelde");
-		resistenciaService.reportaTraicaoRebelde(idRebelde);
+		resistenciaService.reportaTraicaoRebelde(idReportador, idTraidor);
 		log.info("[finish] ResistenciaController - reportaTraicaoRebelde");
 	}
 }

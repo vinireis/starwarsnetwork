@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(value = "/v1/resistencia")
 public interface ResistenciaAPI {
-	@PatchMapping("/rebelde/{idRebelde}/reportatraicao")
+	@PatchMapping("/rebeldereportador/{idReportador}/reportatraicao//rebeldetraidor/{idTraidor}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
-	void reportaTraicaoRebelde(@PathVariable UUID idRebelde);
+	void reportaTraicaoRebelde(@PathVariable UUID idReportador, @PathVariable UUID idTraidor);
+
 }

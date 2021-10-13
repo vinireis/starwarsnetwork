@@ -10,4 +10,5 @@ import br.com.letscode.starwarsnetwork.rebelde.domain.Rebelde;
 public interface RebeldeService {
 	Rebelde adicionaRebelde(Rebelde rebelde);
 	void atualizaLocalizacaoRebelde(UUID idRebelde, @Valid Localizacao localizacao);
+	void marcaComoTraidor(UUID idTraidor);
 }

@@ -28,9 +28,14 @@ public class Rebelde {
 	private String genero;
 	private Localizacao localizacao;
 	private Inventario inventario;
+	private boolean traidor;
 	
 	public void atualizaLocalizacao(@Valid Localizacao localizacao) {
 		this.localizacao = localizacao;
+	}
+	
+	public void marcaComoTraidor() {
+		this.traidor = true;
 	}
 
 	@Override
