@@ -17,5 +17,4 @@ public interface RebeldeAPI {
 	@PostMapping
 	@ResponseStatus(code = HttpStatus.CREATED)
 	void adicionaRebelde(@RequestBody @Valid RebeldeRequest rebeldeRequest);
-
 }

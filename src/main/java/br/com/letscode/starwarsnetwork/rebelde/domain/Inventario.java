@@ -1,6 +1,6 @@
 package br.com.letscode.starwarsnetwork.rebelde.domain;
 
-import java.util.List;
+import java.util.Map;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -18,5 +18,5 @@ import lombok.ToString;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Inventario {
-	private List<ItemEstoque> estoque;
+	private Map<TipoItem, Integer> estoque;
 }
