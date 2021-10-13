@@ -4,8 +4,10 @@ import java.util.UUID;
 
 import javax.validation.Valid;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import br.com.letscode.starwarsnetwork.handler.ApiException;
 import br.com.letscode.starwarsnetwork.rebelde.domain.Localizacao;
 import br.com.letscode.starwarsnetwork.rebelde.domain.Rebelde;
 import br.com.letscode.starwarsnetwork.rebelde.domain.SolicitacaoNegociacao;
@@ -37,7 +39,9 @@ public class RebeldeMongoDBService implements RebeldeService {
 
 	private Rebelde buscaRebeldePorId(UUID idRebelde) {
 		log.info("[start] RebeldeMongoDBService - buscaRebeldePorId");
-		Rebelde rebeldePorId = rebeldeRepository.buscaPorId(idRebelde).orElseThrow();
+		Rebelde rebeldePorId = rebeldeRepository.buscaPorId(idRebelde)
+				.orElseThrow(() -> ApiException.throwApiException(HttpStatus.NOT_FOUND,
+						String.format("Rebelde com id %s não encontrado", idRebelde.toString())));
 		log.info("[finish] RebeldeMongoDBService - buscaRebeldePorId");
 		return rebeldePorId;
 	}
@@ -64,7 +68,7 @@ public class RebeldeMongoDBService implements RebeldeService {
 		} else {
 			String message = "Os itens oferecidos não possuem a mesma quantidade de pontos!";
 			log.error(message);
-			throw new RuntimeException(message);
+			throw ApiException.throwApiException(HttpStatus.BAD_REQUEST, message);
 		}
 		log.info("[finish] RebeldeMongoDBService - negociaItens");
 	}

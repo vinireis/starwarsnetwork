@@ -3,6 +3,11 @@ package br.com.letscode.starwarsnetwork.rebelde.domain;
 import java.util.Collections;
 import java.util.Map;
 import java.util.Map.Entry;
+
+import org.springframework.http.HttpStatus;
+
+import br.com.letscode.starwarsnetwork.handler.ApiException;
+
 import java.util.Optional;
 
 import lombok.AccessLevel;
@@ -41,7 +46,8 @@ public class Inventario {
 		if(itemRemover.getValue() <= estoqueAtual) {
 			this.estoque.put(itemRemover.getKey(), estoqueAtual - itemRemover.getValue());
 		} else {
-			throw new RuntimeException("Quantidade de pontos insuficiente");
+			throw ApiException.throwApiException(HttpStatus.BAD_REQUEST,
+					String.format("Quantidade de pontos insuficiente para o item %s", itemRemover.getKey().toString()));
 		}
 	}
 	
