@@ -1,7 +1,5 @@
 package br.com.letscode.starwarsnetwork.resistencia.application.service;
 
-import java.util.HashMap;
-import java.util.Set;
 import java.util.UUID;
 
 import javax.annotation.PostConstruct;
@@ -19,30 +17,22 @@ import lombok.extern.log4j.Log4j2;
 public class ResistenciaMongoDBService implements ResistenciaService {
 	private ResistenciaRepository resistenciaRepository;
 	private RebeldeService rebeldeService;
-	private static final String PADRAO = "PADRAO";
 
 	@Override
 	@PostConstruct
 	public void iniciaResistencia() {
 		log.info("[start] ResistenciaMongoDBService - iniciaResistencia");
-		if (resistenciaRepository.buscaResistencia(PADRAO).isEmpty()) {
-			var resistencia = constroiResistencia();
+		if (resistenciaRepository.buscaResistencia(Resistencia.PADRAO).isEmpty()) {
+			var resistencia = Resistencia.constroiResistenciaPadrao();
 			resistenciaRepository.salva(resistencia);
 		}
 		log.info("[finish] ResistenciaMongoDBService - iniciaResistencia");
 	}
 
-	private Resistencia constroiResistencia() {
-		return Resistencia.builder()
-				.codigo(PADRAO)
-				.blackListRebeldes(new HashMap<UUID, Set<UUID>>())
-				.build();
-	}
-
 	@Override
 	public Resistencia getResistencia() {
 		log.info("[start] ResistenciaMongoDBService - getResistencia");
-		Resistencia resistencia = resistenciaRepository.buscaResistencia(PADRAO).orElseThrow();
+		Resistencia resistencia = resistenciaRepository.buscaResistencia(Resistencia.PADRAO).orElseThrow();
 		log.info("[finish] ResistenciaMongoDBService - getResistencia");
 		return resistencia;
 

@@ -1,6 +1,7 @@
 package br.com.letscode.starwarsnetwork.resistencia.domain;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Optional;
@@ -30,9 +31,17 @@ import lombok.extern.log4j.Log4j2;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Document(collection = "Resistencia")
 public class Resistencia {
+	public static final String PADRAO = "PADRAO";
     @MongoId(targetType = FieldType.STRING)
     private String codigo;
 	private Map<UUID, Set<UUID>> blackListRebeldes;
+
+	public static Resistencia constroiResistenciaPadrao() {
+		return Resistencia.builder()
+				.codigo(PADRAO)
+				.blackListRebeldes(new HashMap<UUID, Set<UUID>>())
+				.build();
+	}
 
 	public void reportaTraicaoRebelde(UUID idReportador, UUID idTraidor, RebeldeService rebeldeService) {
 		log.info("[start] Resistencia - reportaTraicaoRebelde");
