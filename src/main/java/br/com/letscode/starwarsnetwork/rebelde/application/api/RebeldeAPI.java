@@ -26,4 +26,8 @@ public interface RebeldeAPI {
 	@PatchMapping("/{idRebelde}/localizacao")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	void atualizaLocalizacaoRebelde(@PathVariable UUID idRebelde, @RequestBody @Valid Localizacao localizacao);
+
+	@PatchMapping("/rebeldesolicitante/{idSolicitante}/negociaitens/rebeldesolicitado/{idSolicitado}")
+	@ResponseStatus(code = HttpStatus.NO_CONTENT)
+	void negociaItens(@PathVariable UUID idSolicitante, @PathVariable UUID idSolicitado, @RequestBody @Valid ItensNegociacaoRequest localizacao);
 }

@@ -1,5 +1,6 @@
 package br.com.letscode.starwarsnetwork.rebelde.domain;
 
+import java.util.Map;
 import java.util.UUID;
 
 import javax.validation.Valid;
@@ -37,6 +38,12 @@ public class Rebelde {
 	public void marcaComoTraidor() {
 		this.traidor = true;
 	}
+
+	public void trocaItens(Map<TipoItem, Integer> itensRemover, Map<TipoItem, Integer> itensAdicionar) {
+		inventario.removeItens(itensRemover);
+		inventario.adicionaItens(itensAdicionar);
+	}
+
 
 	@Override
 	public boolean equals(Object obj) {
