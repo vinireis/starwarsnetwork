@@ -13,9 +13,10 @@ public class RebeldeMongoDBService implements RebeldeService {
 	private RebeldeRepository rebeldeRepository;
 
 	@Override
-	public void adicionaRebelde(Rebelde rebelde) {
+	public Rebelde adicionaRebelde(Rebelde rebelde) {
 		log.info("[start] RebeldeMongoDBService - adicionaRebelde");
-		rebeldeRepository.save(rebelde);
+		rebelde = rebeldeRepository.save(rebelde);
 		log.info("[finish] RebeldeMongoDBService - adicionaRebelde");
+		return rebelde;
 	}
 }

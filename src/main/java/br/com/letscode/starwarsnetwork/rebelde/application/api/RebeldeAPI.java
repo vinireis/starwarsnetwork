@@ -16,5 +16,5 @@ import br.com.letscode.starwarsnetwork.rebelde.application.api.request.RebeldeRe
 public interface RebeldeAPI {
 	@PostMapping
 	@ResponseStatus(code = HttpStatus.CREATED)
-	void adicionaRebelde(@RequestBody @Valid RebeldeRequest rebeldeRequest);
+	RebeldeDetalhadoResponse adicionaRebelde(@RequestBody @Valid RebeldeRequest rebeldeRequest);
 }

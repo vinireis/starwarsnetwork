@@ -14,9 +14,10 @@ public class RebeldeRepositoryMongoDB implements RebeldeRepository {
 	private RebeldeSpringDataMongoDBRepository rebeldeSpringDataMongoDBRepository;
 
 	@Override
-	public void save(Rebelde rebelde) {
+	public Rebelde save(Rebelde rebelde) {
 		log.info("[start] RebeldeRepositoryMongoDB - save");
-		rebeldeSpringDataMongoDBRepository.save(rebelde);
+		rebelde = rebeldeSpringDataMongoDBRepository.save(rebelde);
 		log.info("[start] RebeldeRepositoryMongoDB - save");
+		return rebelde;
 	}
 }
