@@ -38,8 +38,9 @@ public class RebeldeMongoDBService implements RebeldeService {
 		rebeldeRepository.salva(rebeldePorId);
 		log.info("[finish] RebeldeMongoDBService - atualizaLocalizacaoRebelde");
 	}
-
-	private Rebelde buscaRebeldePorId(UUID idRebelde) {
+	
+	@Override
+	public Rebelde buscaRebeldePorId(UUID idRebelde) {
 		log.info("[start] RebeldeMongoDBService - buscaRebeldePorId");
 		Rebelde rebeldePorId = rebeldeRepository.buscaPorId(idRebelde)
 				.orElseThrow(() -> ApiException.throwApiException(HttpStatus.NOT_FOUND,

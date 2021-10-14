@@ -15,4 +15,5 @@ public interface RebeldeService {
 	void marcaComoTraidor(UUID idTraidor);
 	void negociaItens(SolicitacaoNegociacao solicitacaoNegociacao);
 	void validaRebeldes(List<UUID> idsRebeldes);
+	Rebelde buscaRebeldePorId(UUID idRebelde);
 }
