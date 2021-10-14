@@ -45,6 +45,7 @@ public class Resistencia {
 
 	public void reportaTraicaoRebelde(ReporteTraicaoRequest report) {
 		log.info("[start] Resistencia - reportaTraicaoRebelde");
+		report.getRebeldeService().validaRebeldes(report.getIdsRebeldes());
 		var reportadores = obtemResportadoresDoTraidor(report.getIdTraidor());
 		reportadores.add(report.getIdReportador());
 		blackListRebeldes.put(report.getIdTraidor(), reportadores);

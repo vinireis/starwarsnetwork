@@ -1,5 +1,6 @@
 package br.com.letscode.starwarsnetwork.rebelde.application.service;
 
+import java.util.List;
 import java.util.UUID;
 
 import javax.validation.Valid;
@@ -83,5 +84,13 @@ public class RebeldeMongoDBService implements RebeldeService {
 
 	public boolean negociantesNaoForemTraidores(Rebelde negocianteSolicitante, Rebelde negocianteSolicitado) {
 		return !negocianteSolicitado.isTraidor() && !negocianteSolicitante.isTraidor();
+	}
+
+	@Override
+	public void validaRebeldes(List<UUID> idsRebeldes) {
+		log.info("[start] RebeldeMongoDBService - validaRebeldes");
+		idsRebeldes.stream()
+		.forEach(id -> buscaRebeldePorId(id));
+		log.info("[finish] RebeldeMongoDBService - validaRebeldes");
 	}
 }
