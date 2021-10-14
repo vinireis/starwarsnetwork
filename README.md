@@ -16,7 +16,7 @@ mvn spring-boot:run
 ```
 
 ### Link to access Swagger-UI local
-- [Swagger Local - http://localhost:8080/starwarsnetwork/app/swagger-ui/index.html](http://localhost:8080/starwarsnetwork/app/swagger-ui/index.html)
+- [Swagger Local](http://localhost:8080/starwarsnetwork/app/swagger-ui/index.html?configUrl=/starwarsnetwork/app/v3/api-docs/swagger-config#/)
 
 ## Test using Postman
 ### Requirements 
