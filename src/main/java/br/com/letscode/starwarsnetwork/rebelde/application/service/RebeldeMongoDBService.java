@@ -79,6 +79,9 @@ public class RebeldeMongoDBService implements RebeldeService {
 		if (negociantesNaoForemTraidores(solicitante, solicitado)) {
 			solicitante.trocaItens(negociacao.getItensSolicitante(), negociacao.getItensSolicitado());
 			solicitado.trocaItens(negociacao.getItensSolicitado(), negociacao.getItensSolicitante());
+		} else {
+			throw ApiException.throwApiException(HttpStatus.BAD_REQUEST,
+					"Rebelde traidor! Negocição Inválida!");
 		}
 	}
 

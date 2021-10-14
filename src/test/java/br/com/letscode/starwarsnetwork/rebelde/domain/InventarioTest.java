@@ -9,22 +9,30 @@ import java.util.Map;
 import org.junit.jupiter.api.Test;
 
 class InventarioTest {
-	private Map<TipoItem, Integer> buildEstoqueComUmItem() {
+	public static Map<TipoItem, Integer> buildEstoqueComUmItem() {
 		return Map.ofEntries(Map.entry(TipoItem.AGUA, 3));
 	}
+
+	public static Map<TipoItem, Integer> buildEstoqueEquivalenteAoDeUmItem() {
+		return Map.ofEntries(Map.entry(TipoItem.COMIDA, 6));
+	}
 	
-	private Map<TipoItem, Integer> buildEstoqueComDoisItens() {
+	public static Map<TipoItem, Integer> buildEstoqueComDoisItens() {
 		Map<TipoItem, Integer> estoque = new HashMap<TipoItem, Integer>();
 		estoque.put(TipoItem.AGUA, 10);
 		estoque.put(TipoItem.COMIDA, 20);
 		return estoque;
 	}
 	
-	private Map<TipoItem, Integer> buildEstoqueComDoisItemRemovido() {
+	public static Map<TipoItem, Integer> buildEstoqueComDoisItemRemovido() {
 		return Collections.unmodifiableMap(Map.ofEntries(Map.entry(TipoItem.AGUA, 7),Map.entry(TipoItem.COMIDA, 20)));
 	}
 	
-	private Inventario buildInventario(Map<TipoItem, Integer> estoque) {
+	public static Map<TipoItem, Integer> buildEstoqueComDoisItensAposTroca() {
+		return Collections.unmodifiableMap(Map.ofEntries(Map.entry(TipoItem.AGUA, 7),Map.entry(TipoItem.COMIDA, 26)));
+	}
+	
+	public static Inventario buildInventario(Map<TipoItem, Integer> estoque) {
 		return Inventario.builder()
 				.estoque(estoque)
 				.build();
