@@ -28,4 +28,12 @@ class InventarioTest {
 		Integer pontos = Inventario.calculaPontos(inventario.getEstoque());
 		assertEquals(pontos, 0);
 	}
+	
+	@Test
+	void dadoInventarioComItens_quandoCacularPontos_EntaoDeveRetornaASomaDosItens() {
+		Inventario inventario = buildInventario(Map.ofEntries(Map.entry(TipoItem.AGUA, 5),Map.entry(TipoItem.COMIDA, 10)));
+		Integer pontos = Inventario.calculaPontos(inventario.getEstoque());
+		Integer pontosCalculado = (TipoItem.AGUA.getPontos() * 5) + (TipoItem.COMIDA.getPontos() * 10);
+		assertEquals(pontos, pontosCalculado);
+	}
 }
