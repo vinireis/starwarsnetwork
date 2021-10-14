@@ -43,12 +43,12 @@ public class Resistencia {
 				.build();
 	}
 
-	public void reportaTraicaoRebelde(UUID idReportador, UUID idTraidor, RebeldeService rebeldeService) {
+	public void reportaTraicaoRebelde(ReporteTraicaoRequest report) {
 		log.info("[start] Resistencia - reportaTraicaoRebelde");
-		var reportadores = obtemResportadoresDoTraidor(idTraidor);
-		reportadores.add(idReportador);
-		blackListRebeldes.put(idTraidor, reportadores);
-		marcaComoTraidor(idTraidor, rebeldeService, reportadores);
+		var reportadores = obtemResportadoresDoTraidor(report.getIdTraidor());
+		reportadores.add(report.getIdReportador());
+		blackListRebeldes.put(report.getIdTraidor(), reportadores);
+		marcaComoTraidor(report.getIdTraidor(), report.getRebeldeService(), reportadores);
 		log.info("[finish] Resistencia - reportaTraicaoRebelde");
 	}
 
@@ -66,6 +66,4 @@ public class Resistencia {
 	public Map<UUID, Set<UUID>> getBlackListRebeldes() {
 		return Collections.unmodifiableMap(blackListRebeldes);
 	}
-	
-	
 }
