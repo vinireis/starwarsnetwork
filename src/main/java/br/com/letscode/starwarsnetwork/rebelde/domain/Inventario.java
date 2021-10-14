@@ -30,10 +30,16 @@ public class Inventario {
 		return Collections.unmodifiableMap(estoque);
 	}
 
-	static Integer calculaPontos(Map<TipoItem, Integer> itensSolicitante) {
+	public static Integer calculaPontos(Map<TipoItem, Integer> itensSolicitante) {
 		return itensSolicitante.entrySet().stream()
 			.mapToInt(i -> i.getKey().getPontos() * i.getValue())
 			.sum();
+	}
+
+	public static boolean pontosIguais(Map<TipoItem, Integer> itensSolicitante, Map<TipoItem, Integer> itensSolicitado) {
+		Integer pontosSolicitante = Inventario.calculaPontos(itensSolicitante);
+		Integer pontosSolicitado = Inventario.calculaPontos(itensSolicitado);
+		return pontosSolicitado.equals(pontosSolicitante);
 	}
 	
 	void removeItens(Map<TipoItem, Integer> itensRemover) {

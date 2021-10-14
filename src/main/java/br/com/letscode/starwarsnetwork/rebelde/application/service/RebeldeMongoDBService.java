@@ -68,9 +68,8 @@ public class RebeldeMongoDBService implements RebeldeService {
 			rebeldeRepository.salva(negocianteSolicitante);
 			rebeldeRepository.salva(negocianteSolicitado);
 		} else {
-			String message = "Os itens oferecidos não possuem a mesma quantidade de pontos!";
-			log.error(message);
-			throw ApiException.throwApiException(HttpStatus.BAD_REQUEST, message);
+			throw ApiException.throwApiException(HttpStatus.BAD_REQUEST,
+					"Os itens oferecidos não possuem a mesma quantidade de pontos!");
 		}
 		log.info("[finish] RebeldeMongoDBService - negociaItens");
 	}

@@ -15,9 +15,7 @@ public class SolicitacaoNegociacao {
 	private ItensNegociacaoRequest itensNegocicao;
 	
 	public boolean validaPontosItens() {
-		Integer pontosSolicitante = Inventario.calculaPontos(itensNegocicao.getItensSolicitante());
-		Integer pontosSolicitado = Inventario.calculaPontos(itensNegocicao.getItensSolicitado());
-		return pontosSolicitado.equals(pontosSolicitante);
+		return Inventario.pontosIguais(itensNegocicao.getItensSolicitante(), itensNegocicao.getItensSolicitado());
 	}
 
 	public Map<TipoItem, Integer> getItensSolicitante() {

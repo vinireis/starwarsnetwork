@@ -7,7 +7,9 @@ import javax.validation.Valid;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.http.HttpStatus;
 
+import br.com.letscode.starwarsnetwork.handler.ApiException;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -45,8 +47,13 @@ public class Rebelde {
 		log.info("[start] Rebelde {} trocaItens. Inventário {}", this.nome, this.inventario.toString());
 		log.debug("itensRemover = {}", itensRemover);
 		log.debug("itensAdicionar = {}", itensAdicionar);
-		inventario.removeItens(itensRemover);
-		inventario.adicionaItens(itensAdicionar);
+		if(Inventario.pontosIguais(itensRemover, itensAdicionar)) {
+			inventario.removeItens(itensRemover);
+			inventario.adicionaItens(itensAdicionar);
+		}  else {
+			throw ApiException.throwApiException(HttpStatus.BAD_REQUEST,
+					"Os itens oferecidos não possuem a mesma quantidade de pontos!");
+		}
 		log.info("[finish] Rebelde {} trocaItens. Inventário {}", this.nome, this.inventario.toString());
 	}
 
