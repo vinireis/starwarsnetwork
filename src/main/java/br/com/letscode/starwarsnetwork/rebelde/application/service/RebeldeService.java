@@ -16,4 +16,5 @@ public interface RebeldeService {
 	void negociaItens(SolicitacaoNegociacao solicitacaoNegociacao);
 	void validaRebeldes(List<UUID> idsRebeldes);
 	Rebelde buscaRebeldePorId(UUID idRebelde);
+	List<Rebelde> obtemTodosRebeldes();
 }

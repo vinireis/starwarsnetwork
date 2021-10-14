@@ -1,5 +1,6 @@
 package br.com.letscode.starwarsnetwork.rebelde.application.api;
 
+import java.util.List;
 import java.util.UUID;
 
 import javax.validation.Valid;
@@ -9,8 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.letscode.starwarsnetwork.rebelde.application.api.request.RebeldeRequest;
 import br.com.letscode.starwarsnetwork.rebelde.application.service.RebeldeService;
 import br.com.letscode.starwarsnetwork.rebelde.domain.Localizacao;
-import br.com.letscode.starwarsnetwork.rebelde.domain.SolicitacaoNegociacao;
 import br.com.letscode.starwarsnetwork.rebelde.domain.Rebelde;
+import br.com.letscode.starwarsnetwork.rebelde.domain.SolicitacaoNegociacao;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
@@ -47,5 +48,13 @@ public class RebeldeController implements RebeldeAPI {
 				.build();
 		rebeldeService.negociaItens(solicitacaoNegociacao);
 		log.info("[finish] RebeldeController - negociaItens");
+	}
+
+	@Override
+	public List<RebeldeDetalhadoResponse> getRebeldes() {
+		log.info("[start] RebeldeController - getRebeldes");
+		List<Rebelde> todosRebeldes = rebeldeService.obtemTodosRebeldes();
+		log.info("[finish] RebeldeController - getRebeldes");
+		return RebeldeDetalhadoResponse.converte(todosRebeldes);
 	}
 }

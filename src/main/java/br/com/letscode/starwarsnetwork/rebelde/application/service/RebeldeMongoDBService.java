@@ -96,4 +96,12 @@ public class RebeldeMongoDBService implements RebeldeService {
 		.forEach(id -> buscaRebeldePorId(id));
 		log.info("[finish] RebeldeMongoDBService - validaRebeldes");
 	}
+
+	@Override
+	public List<Rebelde> obtemTodosRebeldes() {
+		log.info("[start] RebeldeMongoDBService - obtemTodosRebeldes");
+		var todosRebeldes = rebeldeRepository.buscaTodos();
+		log.info("[finish] RebeldeMongoDBService - obtemTodosRebeldes");
+		return todosRebeldes;
+	}
 }

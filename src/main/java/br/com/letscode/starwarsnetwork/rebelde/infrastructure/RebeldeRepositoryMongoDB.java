@@ -1,5 +1,6 @@
 package br.com.letscode.starwarsnetwork.rebelde.infrastructure;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -30,5 +31,13 @@ public class RebeldeRepositoryMongoDB implements RebeldeRepository {
 		var rebelde = rebeldeSpringDataMongoDBRepository.findById(idRebelde);
 		log.info("[finish] RebeldeRepositoryMongoDB - buscaPorId");
 		return rebelde;
+	}
+
+	@Override
+	public List<Rebelde> buscaTodos() {
+		log.info("[start] RebeldeRepositoryMongoDB - buscaTodos");
+		var todosRebeldes = rebeldeSpringDataMongoDBRepository.findAll();
+		log.info("[finish] RebeldeRepositoryMongoDB - buscaTodos");
+		return todosRebeldes;
 	}
 }

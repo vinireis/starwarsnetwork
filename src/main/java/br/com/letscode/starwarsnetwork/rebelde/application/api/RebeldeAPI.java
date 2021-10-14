@@ -1,10 +1,12 @@
 package br.com.letscode.starwarsnetwork.rebelde.application.api;
 
+import java.util.List;
 import java.util.UUID;
 
 import javax.validation.Valid;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,5 +31,9 @@ public interface RebeldeAPI {
 
 	@PatchMapping("/rebeldesolicitante/{idSolicitante}/negociaitens/rebeldesolicitado/{idSolicitado}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
-	void negociaItens(@PathVariable UUID idSolicitante, @PathVariable UUID idSolicitado, @RequestBody @Valid ItensNegociacaoRequest localizacao);
+	void negociaItens(@PathVariable UUID idSolicitante, @PathVariable UUID idSolicitado, @RequestBody @Valid ItensNegociacaoRequest localizacao);	
+	
+	@GetMapping
+	@ResponseStatus(value = HttpStatus.OK)
+	public List<RebeldeDetalhadoResponse> getRebeldes();
 }

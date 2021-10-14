@@ -1,5 +1,8 @@
 package br.com.letscode.starwarsnetwork.rebelde.application.api;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import br.com.letscode.starwarsnetwork.rebelde.domain.Inventario;
 import br.com.letscode.starwarsnetwork.rebelde.domain.Localizacao;
 import br.com.letscode.starwarsnetwork.rebelde.domain.Rebelde;
@@ -21,5 +24,11 @@ public class RebeldeDetalhadoResponse {
 		this.genero = rebelde.getGenero();
 		this.localizacao = rebelde.getLocalizacao();
 		this.inventario = rebelde.getInventario();
+	}
+
+	public static List<RebeldeDetalhadoResponse> converte(List<Rebelde> todosRebeldes) {
+		return todosRebeldes.stream()
+				.map(RebeldeDetalhadoResponse::new)
+				.collect(Collectors.toList());
 	}
 }
