@@ -114,4 +114,14 @@ public class RebeldeMongoDBService implements RebeldeService {
 		log.info("[finish] RebeldeMongoDBService - obtemTodosRebeldes");
 		return porcentagemTraidores;
 	}
+	
+	@Override
+	public Long obtemPorcentagemDeRebeldes() {
+		log.info("[start] RebeldeMongoDBService - obtemTodosRebeldes");
+		Long total = rebeldeRepository.contaTodos();
+		Long totalTraidores = rebeldeRepository.contaTodosTraidores(true);
+		Long porcentagemRebeldes = ((total - totalTraidores)* 100) / total ;
+		log.info("[finish] RebeldeMongoDBService - obtemTodosRebeldes");
+		return porcentagemRebeldes;
+	}
 }

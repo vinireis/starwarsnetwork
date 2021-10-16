@@ -18,4 +18,5 @@ public interface RebeldeService {
 	Rebelde buscaRebeldePorId(UUID idRebelde);
 	List<Rebelde> obtemTodosRebeldes();
 	Long obtemPorcentagemDeTraidores();
+	Long obtemPorcentagemDeRebeldes();
 }

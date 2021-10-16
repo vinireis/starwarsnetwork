@@ -65,4 +65,12 @@ public class RebeldeController implements RebeldeAPI {
 		log.info("[finish] RebeldeController - getRebeldes");
 		return porcentagemTraidores;
 	}
+
+	@Override
+	public Long getPorcentagemDeRebeldes() {
+		log.info("[start] RebeldeController - getPorcentagemDeTraidores");
+		Long porcentagemRebeldes = rebeldeService.obtemPorcentagemDeRebeldes();
+		log.info("[finish] RebeldeController - getRebeldes");
+		return porcentagemRebeldes;
+	}
 }
