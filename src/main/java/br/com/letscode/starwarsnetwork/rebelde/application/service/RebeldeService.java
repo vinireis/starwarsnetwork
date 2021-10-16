@@ -17,4 +17,5 @@ public interface RebeldeService {
 	void validaRebeldes(List<UUID> idsRebeldes);
 	Rebelde buscaRebeldePorId(UUID idRebelde);
 	List<Rebelde> obtemTodosRebeldes();
+	Long obtemPorcentagemDeTraidores();
 }
