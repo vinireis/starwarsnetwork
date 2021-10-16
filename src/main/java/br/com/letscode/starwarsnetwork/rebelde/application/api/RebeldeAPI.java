@@ -36,4 +36,8 @@ public interface RebeldeAPI {
 	@GetMapping
 	@ResponseStatus(value = HttpStatus.OK)
 	public List<RebeldeDetalhadoResponse> getRebeldes();
+	
+	@GetMapping("/porcentagemtraidores")
+	@ResponseStatus(value = HttpStatus.OK)
+	public Long getPorcentagemDeTraidores();
 }
