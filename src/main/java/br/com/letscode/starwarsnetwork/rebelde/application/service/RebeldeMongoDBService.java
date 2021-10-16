@@ -122,21 +122,21 @@ public class RebeldeMongoDBService implements RebeldeService {
 	
 	@Override
 	public Long obtemPorcentagemDeRebeldes() {
-		log.info("[start] RebeldeMongoDBService - obtemTodosRebeldes");
+		log.info("[start] RebeldeMongoDBService - obtemPorcentagemDeRebeldes");
 		Long total = rebeldeRepository.contaTodos();
 		Long totalTraidores = rebeldeRepository.contaTodosTraidores(true);
 		Long porcentagemRebeldes = ((total - totalTraidores)* 100) / total ;
-		log.info("[finish] RebeldeMongoDBService - obtemTodosRebeldes");
+		log.info("[finish] RebeldeMongoDBService - obtemPorcentagemDeRebeldes");
 		return porcentagemRebeldes;
 	}
 	
 	@Override
 	public Map<TipoItem, Long> obtemQuantidadeMediaRecursoPorRebelde() {
-		log.info("[start] RebeldeMongoDBService - obtemTodosRebeldes");
+		log.info("[start] RebeldeMongoDBService - obtemQuantidadeMediaRecursoPorRebelde");
 		Long total = rebeldeRepository.contaTodos();
 		Inventario inventarioTotal = buildInventarioGeral();
 		Map<TipoItem, Long> quantidadeMediaRecursoPorRebelde = inventarioTotal.buildQuantidadeMediaRecursoPorRebelde(total);
-		log.info("[finish] RebeldeMongoDBService - obtemTodosRebeldes");
+		log.info("[finish] RebeldeMongoDBService - obtemQuantidadeMediaRecursoPorRebelde");
 		return quantidadeMediaRecursoPorRebelde;
 	}
 
@@ -147,5 +147,18 @@ public class RebeldeMongoDBService implements RebeldeService {
 			.map(Inventario::getEstoque)
 			.forEach(estoque -> Optional.ofNullable(estoque).ifPresent(e -> inventarioTotal.adicionaItens(e)));
 		return inventarioTotal;
+	}
+	
+	@Override
+	public Integer obtemPontosPerdidosDevidoTraidores() {
+		log.info("[start] RebeldeMongoDBService - obtemPontosPerdidosDevidoTraidores");
+		var todosRebeldesTraidores = rebeldeRepository.buscaTodosTraidores(true);
+		Integer pontosPerdidos = todosRebeldesTraidores.stream()
+				.map(Rebelde::getInventario)
+				.map(Inventario::getEstoque)
+				.mapToInt(Inventario::calculaPontos)
+				.sum();
+		log.info("[finish] RebeldeMongoDBService - obtemPontosPerdidosDevidoTraidores");
+		return pontosPerdidos;
 	}
 }

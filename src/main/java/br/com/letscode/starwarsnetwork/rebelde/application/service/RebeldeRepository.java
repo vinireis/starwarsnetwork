@@ -12,4 +12,5 @@ public interface RebeldeRepository {
 	List<Rebelde> buscaTodos();
 	Long contaTodos();
 	Long contaTodosTraidores(boolean traidor);
+	List<Rebelde> buscaTodosTraidores(boolean traidor);
 }

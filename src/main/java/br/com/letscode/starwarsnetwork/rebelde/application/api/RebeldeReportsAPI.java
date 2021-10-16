@@ -24,4 +24,8 @@ public interface RebeldeReportsAPI {
 	@GetMapping("/mediarecursorebelde")
 	@ResponseStatus(value = HttpStatus.OK)
 	public Map<TipoItem, Long> getMediaRecursoRebelde();
+	
+	@GetMapping("/pontosperdidostraidores")
+	@ResponseStatus(value = HttpStatus.OK)
+	public Integer getPontosPerdidosDevidoTraidores();
 }

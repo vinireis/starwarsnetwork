@@ -22,4 +22,5 @@ public interface RebeldeService {
 	Long obtemPorcentagemDeTraidores();
 	Long obtemPorcentagemDeRebeldes();
 	Map<TipoItem, Long> obtemQuantidadeMediaRecursoPorRebelde();
+	Integer obtemPontosPerdidosDevidoTraidores();
 }

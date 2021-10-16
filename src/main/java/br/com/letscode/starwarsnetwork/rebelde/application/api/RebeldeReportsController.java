@@ -17,25 +17,33 @@ public class RebeldeReportsController implements RebeldeReportsAPI {
 
 	@Override
 	public Long getPorcentagemDeTraidores() {
-		log.info("[start] RebeldeController - getPorcentagemDeTraidores");
+		log.info("[start] RebeldeReportsController - getPorcentagemDeTraidores");
 		Long porcentagemTraidores = rebeldeService.obtemPorcentagemDeTraidores();
-		log.info("[finish] RebeldeController - getRebeldes");
+		log.info("[finish] RebeldeReportsController - getPorcentagemDeTraidores");
 		return porcentagemTraidores;
 	}
 
 	@Override
 	public Long getPorcentagemDeRebeldes() {
-		log.info("[start] RebeldeController - getPorcentagemDeTraidores");
+		log.info("[start] RebeldeReportsController - getPorcentagemDeRebeldes");
 		Long porcentagemRebeldes = rebeldeService.obtemPorcentagemDeRebeldes();
-		log.info("[finish] RebeldeController - getRebeldes");
+		log.info("[finish] RebeldeReportsController - getPorcentagemDeRebeldes");
 		return porcentagemRebeldes;
 	}
 
 	@Override
 	public Map<TipoItem, Long> getMediaRecursoRebelde() {
-		log.info("[start] RebeldeController - getPorcentagemDeTraidores");
+		log.info("[start] RebeldeReportsController - getMediaRecursoRebelde");
 		var media = rebeldeService.obtemQuantidadeMediaRecursoPorRebelde();
-		log.info("[finish] RebeldeController - getRebeldes");
+		log.info("[finish] RebeldeReportsController - getMediaRecursoRebelde");
 		return media;
+	}
+
+	@Override
+	public Integer getPontosPerdidosDevidoTraidores() {
+		log.info("[start] RebeldeReportsController - getPontosPerdidosDevidoTraidores");
+		var pontosPerdidos = rebeldeService.obtemPontosPerdidosDevidoTraidores();
+		log.info("[finish] RebeldeReportsController - getPontosPerdidosDevidoTraidores");
+		return pontosPerdidos;
 	}
 }
