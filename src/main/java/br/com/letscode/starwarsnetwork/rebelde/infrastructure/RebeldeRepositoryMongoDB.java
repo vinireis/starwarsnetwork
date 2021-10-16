@@ -40,4 +40,20 @@ public class RebeldeRepositoryMongoDB implements RebeldeRepository {
 		log.info("[finish] RebeldeRepositoryMongoDB - buscaTodos");
 		return todosRebeldes;
 	}
+	
+	@Override
+	public Long contaTodos() {
+		log.info("[start] RebeldeRepositoryMongoDB - contaTodos");
+		var total = rebeldeSpringDataMongoDBRepository.count();
+		log.info("[finish] RebeldeRepositoryMongoDB - contaTodos");
+		return total;
+	}
+	
+	@Override
+	public Long contaTodosTraidores(boolean traidor) {
+		log.info("[start] RebeldeRepositoryMongoDB - contaTodos");
+		var totalTraidores = rebeldeSpringDataMongoDBRepository.countByTraidor(traidor);
+		log.info("[finish] RebeldeRepositoryMongoDB - contaTodos");
+		return totalTraidores;
+	}
 }
