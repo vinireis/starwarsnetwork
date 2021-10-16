@@ -1,6 +1,9 @@
 package br.com.letscode.starwarsnetwork.rebelde.application.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
 
 import javax.validation.Valid;
@@ -10,9 +13,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.letscode.starwarsnetwork.handler.ApiException;
+import br.com.letscode.starwarsnetwork.rebelde.domain.Inventario;
 import br.com.letscode.starwarsnetwork.rebelde.domain.Localizacao;
 import br.com.letscode.starwarsnetwork.rebelde.domain.Rebelde;
 import br.com.letscode.starwarsnetwork.rebelde.domain.SolicitacaoNegociacao;
+import br.com.letscode.starwarsnetwork.rebelde.domain.TipoItem;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
@@ -123,5 +128,24 @@ public class RebeldeMongoDBService implements RebeldeService {
 		Long porcentagemRebeldes = ((total - totalTraidores)* 100) / total ;
 		log.info("[finish] RebeldeMongoDBService - obtemTodosRebeldes");
 		return porcentagemRebeldes;
+	}
+	
+	@Override
+	public Map<TipoItem, Long> obtemQuantidadeMediaRecursoPorRebelde() {
+		log.info("[start] RebeldeMongoDBService - obtemTodosRebeldes");
+		Long total = rebeldeRepository.contaTodos();
+		Inventario inventarioTotal = buildInventarioGeral();
+		Map<TipoItem, Long> quantidadeMediaRecursoPorRebelde = inventarioTotal.buildQuantidadeMediaRecursoPorRebelde(total);
+		log.info("[finish] RebeldeMongoDBService - obtemTodosRebeldes");
+		return quantidadeMediaRecursoPorRebelde;
+	}
+
+	private Inventario buildInventarioGeral() {
+		Inventario inventarioTotal = Inventario.builder().estoque(new HashMap<>()).build();
+		rebeldeRepository.buscaTodos().stream()
+			.map(Rebelde::getInventario)
+			.map(Inventario::getEstoque)
+			.forEach(estoque -> Optional.ofNullable(estoque).ifPresent(e -> inventarioTotal.adicionaItens(e)));
+		return inventarioTotal;
 	}
 }
