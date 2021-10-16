@@ -7,5 +7,5 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import br.com.letscode.starwarsnetwork.rebelde.domain.Rebelde;
 
 public interface RebeldeSpringDataMongoDBRepository extends MongoRepository<Rebelde, UUID>{
-
+	Long countByTraidor(boolean traidor);
 }
