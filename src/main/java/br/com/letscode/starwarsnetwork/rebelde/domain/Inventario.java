@@ -1,6 +1,7 @@
 package br.com.letscode.starwarsnetwork.rebelde.domain;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -65,5 +66,11 @@ public class Inventario {
 	private void adiciona(Entry<TipoItem, Integer> itemAdicionar) {
 		Integer estoqueAtual = Optional.ofNullable(estoque.get(itemAdicionar.getKey())).orElse(0);
 		this.estoque.put(itemAdicionar.getKey(), estoqueAtual + itemAdicionar.getValue());
+	}
+
+	public Map<TipoItem, Long> buildQuantidadeMediaRecursoPorRebelde(Long total) {
+		Map<TipoItem, Long> quantidadeMediaRecursoPorRebelde = new HashMap<TipoItem,Long>();
+		this.estoque.entrySet().stream().forEach(e -> quantidadeMediaRecursoPorRebelde.put(e.getKey(), e.getValue()/total));
+		return quantidadeMediaRecursoPorRebelde;
 	}
 }

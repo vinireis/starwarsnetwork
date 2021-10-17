@@ -10,4 +10,7 @@ public interface RebeldeRepository {
 	Rebelde salva(Rebelde rebelde);
 	Optional<Rebelde> buscaPorId(UUID idRebelde);
 	List<Rebelde> buscaTodos();
+	Long contaTodos();
+	Long contaTodosTraidores(boolean traidor);
+	List<Rebelde> buscaTodosTraidores(boolean traidor);
 }

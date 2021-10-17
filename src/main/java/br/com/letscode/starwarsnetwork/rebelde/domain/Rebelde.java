@@ -6,6 +6,7 @@ import java.util.UUID;
 import javax.validation.Valid;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.http.HttpStatus;
 
@@ -33,6 +34,7 @@ public class Rebelde {
 	private String genero;
 	private Localizacao localizacao;
 	private Inventario inventario;
+	@Indexed
 	private boolean traidor;
 	
 	public void atualizaLocalizacao(@Valid Localizacao localizacao) {
